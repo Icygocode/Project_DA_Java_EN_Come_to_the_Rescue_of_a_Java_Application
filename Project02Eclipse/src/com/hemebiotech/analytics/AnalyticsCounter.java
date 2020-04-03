@@ -10,10 +10,12 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public class AnalyticsCounter {
+  
+  public static String newline = System.getProperty("line.separator");
 
   public static void main(String args[]) throws Exception {
 // first get input by reading the symptoms.txt
-    TreeMap<String, Integer> symptomsList = new HashMap<>();
+    TreeMap<String, Integer> symptomsList = new TreeMap<String, Integer>();
     //FileReader fileReader = new FileReader("symptoms.txt");
     //BufferedReader reader = new BufferedReader(fileReader);
     BufferedReader reader = new BufferedReader(new FileReader("symptoms.txt"));
@@ -34,7 +36,7 @@ public class AnalyticsCounter {
 
     System.out.println(symptomsList);
 
-// next generate output of symptomsList ?
+// next generate output of symptomsList
     FileWriter writer = new FileWriter("result.out");
     writer.write(String.valueOf(symptomsList));
     writer.close();
