@@ -1,4 +1,4 @@
-package com.hemebiotech.analytics.Reader;
+package com.hemebiotech.analytics.reader;
 
 public class ReadException extends Exception {
 

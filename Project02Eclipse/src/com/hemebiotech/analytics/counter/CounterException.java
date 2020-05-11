@@ -1,5 +1,9 @@
-package com.hemebiotech.analytics.Counter;
+package com.hemebiotech.analytics.counter;
 
-public class CounterException {
+public class CounterException extends Exception {
+
+  public CounterException(Throwable cause){
+    super(cause);
+  }
 
 }

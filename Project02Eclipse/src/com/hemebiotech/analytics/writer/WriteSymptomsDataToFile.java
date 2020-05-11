@@ -1,8 +1,7 @@
-package com.hemebiotech.analytics.Writer;
+package com.hemebiotech.analytics.writer;
 
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
-import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -34,7 +33,7 @@ public class WriteSymptomsDataToFile implements ISymptomWriter {
       //Create a variable which regroup all Keys/Value couples
       Set<Entry<String, Integer>> entries = resultOut.entrySet();
 
-      //loop which will take each entry (K/V) and write it in "filename.txt" file
+      //loop which will take each entry (K/V) and write it in "fileName" file
       for ( Entry<String, Integer> entry : entries ) {
         writer.println(entry.getKey() + " = " + entry.getValue());
         System.out.println(entry.getKey() + " = " + entry.getValue());

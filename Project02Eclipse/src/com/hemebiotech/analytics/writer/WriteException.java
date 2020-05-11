@@ -1,4 +1,4 @@
-package com.hemebiotech.analytics.Writer;
+package com.hemebiotech.analytics.writer;
 
 public class WriteException  extends Exception {
 
