@@ -1,43 +1,53 @@
 package com.hemebiotech.analytics;
 
+
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.io.FileWriter;
+import java.io.PrintWriter;
+import java.util.Map.Entry;
+import java.util.Set;
+import java.util.TreeMap;
+
 
 public class AnalyticsCounter {
-	private static int headacheCount = 0;	// initialize to 0
-	private static int rashCount = 0;		// initialize to 0
-	private static int pupilCount = 0;		// initialize to 0
-	
-	public static void main(String args[]) throws Exception {
-		// first get input
-		BufferedReader reader = new BufferedReader (new FileReader("symptoms.txt"));
-		String line = reader.readLine();
 
-		int i = 0;	// set i to 0
-		int headCount = 0;	// counts headaches
-		while (line != null) {
-			i++;	// increment i
-			System.out.println("symptom from file: " + line);
-			if (line.equals("headache")) {
-				headCount++;
-				System.out.println("number of headaches: " + headCount);
-			}
-			else if (line.equals("rush")) {
-				rashCount++;
-			}
-			else if (line.contains("pupils")) {
-				pupilCount++;
-			}
+  public static void main(String args[]) throws Exception {
+// first get input by reading the symptoms.txt
 
-			line = reader.readLine();	// get another symptom
-		}
-		
-		// next generate output
-		FileWriter writer = new FileWriter ("result.out");
-		writer.write("headache: " + headacheCount + "\n");
-		writer.write("rash: " + rashCount + "\n");
-		writer.write("dialated pupils: " + pupilCount + "\n");
-		writer.close();
-	}
+    TreeMap<String, Integer> symptomsList = new TreeMap<String, Integer>();
+
+    //FileReader fileReader = new FileReader("symptoms.txt");
+    //BufferedReader reader = new BufferedReader(fileReader);
+
+    BufferedReader reader = new BufferedReader(new FileReader("symptoms.txt"));
+    String symptom = reader.readLine();
+
+// get another symptom and Stop
+    while (symptom != null) {
+      if (symptomsList.containsKey(symptom)) {
+        int value = symptomsList.get(symptom);
+        symptomsList.put(symptom, value + 1);
+      } else {
+        symptomsList.put(symptom, 1);
+      }
+      symptom = reader.readLine();
+    }
+// Use symptom as key in Hashmap<String, Integer> named symptomsList
+// Create a new function able to count occurency of symptom and set it as value in the Hashmap
+
+
+    // next generate output of symptomsList => result.out
+    PrintWriter writer = new PrintWriter("result.out");
+
+    // Creation of a variable entries which regroup all Keys/Value couples
+    Set<Entry<String, Integer>> entries = symptomsList.entrySet();
+
+    // Initiating a loop which will take each entry (K/V) inside entries and write it in result.out file
+    for (Entry<String, Integer> entry : entries )
+    {
+      writer.println(entry.getKey() + " = " + entry.getValue());
+      System.out.println(entry.getKey() + " = " + entry.getValue());
+    }
+    writer.close();
+  }
 }
