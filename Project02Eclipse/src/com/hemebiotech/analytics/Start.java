@@ -28,7 +28,7 @@ public class Start {
       IAnalyticsCounter counter = new AnalyticsCounter();
       Map<String, Integer> orderedSymptoms = counter.count(symptoms);
 
-      ISymptomWriter writer = new WriteSymptomsDataToFile("result.txt");
+      ISymptomWriter writer = new WriteSymptomsDataToFile("results.out");
       writer.write(orderedSymptoms);
     } catch (WriteException e) {
       e.printStackTrace();
